@@ -55,8 +55,8 @@ Then use a local server or the Live Server extension to run the code:
 - CSS
 
 ## ☑️ To Do
-- [ ] Display a random joke to the user.
-- [ ] Display a new random joke when the user clicks a button.
+- [X] Display a random joke to the user.
+- [X] Display a new random joke when the user clicks a button.
 - [ ] Make the UI more user friendly and appealing.
 - [ ] Save the jokesStats in local and let the user rate them (optional).
 - [ ] Make the rating system editable till the user switches to another joke.
