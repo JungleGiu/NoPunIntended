@@ -1,35 +1,22 @@
-const jokeElement = document.getElementById('joke') as HTMLDivElement;
-const jokeButton = document.getElementById('joke-button') as HTMLButtonElement;
-interface Jokes {
-    id: string,
-    joke: string,
-    score? : 1 | 2 | 3,
-    date: Date
+export interface Joke {
+  id: string;
+  joke: string;
+  score?: 1 | 2 | 3;
+  date?: Date;
 }
-const jokesRecord: Jokes[] = [];
-const getRandomJoke: Function = async () : Promise<string> => {
-    const response = await fetch('https://icanhazdadjoke.com/', {
-        headers: {
-            'Accept': 'application/json'
-        },
-        method: 'GET'
-    });
-    const data = await response.json();
-    return data.joke;
+export const jokesRecord: Joke[] = [];
+
+export const getRandomJoke: Function = async (): Promise<Joke> => {
+  const response = await fetch("https://icanhazdadjoke.com/", {
+    headers: {
+      Accept: "application/json",
+    },
+    method: "GET",
+  });
+  const data = await response.json();
+  return data as Joke;
 };
 
-getRandomJoke().then((joke : string) => {
-    jokeElement.innerHTML = joke; 
-}).catch((error : Error) => {
-    console.error('Error fetching joke:', error);
-})
-
-
-jokeButton.addEventListener('click', () => {
-    getRandomJoke().then((joke : string) => {
-        jokeElement.innerHTML = joke; 
-        console.log(joke);
-    }).catch((error : Error) => {
-        console.error('Error fetching joke:', error);
-    })
-})
+const rateJoke = (jokeId: string, score: 1 | 2 | 3) => {
+  const thisJoke = jokesRecord.find((joke) => joke.id === jokeId);
+};

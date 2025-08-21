@@ -1,7 +1,5 @@
-const jokeElement = document.getElementById('joke');
-const jokeButton = document.getElementById('joke-button');
-const jokesRecord = [];
-const getRandomJoke = async () => {
+export const jokesRecord = [];
+export const getRandomJoke = async () => {
     const response = await fetch('https://icanhazdadjoke.com/', {
         headers: {
             'Accept': 'application/json'
@@ -9,20 +7,9 @@ const getRandomJoke = async () => {
         method: 'GET'
     });
     const data = await response.json();
-    return data.joke;
+    return data;
 };
-getRandomJoke().then((joke) => {
-    jokeElement.innerHTML = joke;
-}).catch((error) => {
-    console.error('Error fetching joke:', error);
-});
-jokeButton.addEventListener('click', () => {
-    getRandomJoke().then((joke) => {
-        jokeElement.innerHTML = joke;
-        console.log(joke);
-    }).catch((error) => {
-        console.error('Error fetching joke:', error);
-    });
-});
-export {};
+const rateJoke = (jokeId, score) => {
+    const thisJoke = jokesRecord.find((joke) => joke.id === jokeId);
+};
 //# sourceMappingURL=index.js.map
