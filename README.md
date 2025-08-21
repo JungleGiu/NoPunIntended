@@ -1,10 +1,10 @@
-# DadJokes API and Typescript Client
+# 🌐 REST API and Typescript Client
 
-## Introduction
+## 📓 Introduction
 This Exercise is about learning how to use Typescript with Node.js and to consume a REST API trough Promises and async/await fetching functions.
 This repository contains a Typescript client for multiple APIs at the same time, specifically the DadJokes API [https://icanhazdadjoke.com], a weather API [https://openweathermap.org] and a Chuck Norris API [https://api.chucknorris.io]. The client is built using Typescript and Node.js. 
 
-## Goals
+## ✅ Goals
 
 - Learn how to use Typescript with Node.js
 - Learn how to consume a REST API trough Promises and async/await fetching functions
@@ -16,20 +16,25 @@ This repository contains a Typescript client for multiple APIs at the same time,
 - Show the wheather for the user's location
 - Make the code more readable and maintainable
 
-## Getting started
-$ git clone https://github.com/JungleGiu/dadJokes.git
-$ cd typescript-api
-$ npm/yarn/pnpm install
-$ npx tsc -w  # watch mode
+## 🚀 Getting started
 
-Then use a Local server or extension as Live Server to run the code. (https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+```sh
+git clone https://github.com/JungleGiu/dadJokes.git
+cd typescript-api
+npm install   # or: yarn install, or: pnpm install
+npx tsc -w    # watch mode
+```
 
-## Folder structure
+Then use a local server or the Live Server extension to run the code:  
+[Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+## 📁 Folder structure
+```
 .
 ├── build
-│   |── index.js
-│   |── index.d.ts
-│   |── index.d.ts.map
+│   ├── index.js
+│   ├── index.d.ts
+│   ├── index.d.ts.map
 │   └── index.js.map
 ├── tsconfig.json
 ├── package.json
@@ -40,15 +45,16 @@ Then use a Local server or extension as Live Server to run the code. (https://ma
 │   ├── index.html   
 │   └── index.ts
 └── node_modules
+```
 
-## Tecnologies used
+## 🧰 Tecnologies used
 - Typescript
 - Node.js
 - pnpm
 - HTML
 - CSS
 
-## To Do
+## ☑️ To Do
 - [ ] Display a random joke to the user.
 - [ ] Display a new random joke when the user clicks a button.
 - [ ] Make the UI more user friendly and appealing.
