@@ -1,5 +1,6 @@
 const jokeElement = document.getElementById('joke');
 const jokeButton = document.getElementById('joke-button');
+const jokesRecord = [];
 const getRandomJoke = async () => {
     const response = await fetch('https://icanhazdadjoke.com/', {
         headers: {
