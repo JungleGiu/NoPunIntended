@@ -43,7 +43,7 @@ export const rateJoke = (joke: Joke, score: 1 | 2 | 3) => {
   } else {
     const newRecord = { ...joke, score, date: new Date().toISOString() };
     jokesRecord.push(newRecord);
-    console.log(`Joke ${joke.id} rating has been added`, newRecord);
+    console.log(`Joke ${joke.id} rating has been rated`, newRecord);
   }
 };
 
