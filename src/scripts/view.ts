@@ -4,6 +4,9 @@ import type { Weather } from "./types.js";
 
 const jokeElement = document.getElementById("joke") as HTMLDivElement;
 const jokeButton = document.getElementById("joke-button") as HTMLButtonElement;
+const jokeBackground = document.querySelector(
+  ".joke-overlay"
+) as HTMLDivElement;
 const jokeRating = document.querySelectorAll(
   'input[name="score"]'
 ) as NodeListOf<HTMLInputElement>;
@@ -11,6 +14,23 @@ let currentJoke: Joke | null = null;
 
 const weatherElement = document.getElementById("weather") as HTMLDivElement;
 let currentWeather: Weather | null = null;
+
+const nextBlob = () => {
+  switch (jokeBackground.className) {
+    case "joke-overlay one":
+      jokeBackground.className = "joke-overlay two";
+      break;
+    case "joke-overlay two":
+      jokeBackground.className = "joke-overlay three";
+      break;
+    case "joke-overlay three":
+      jokeBackground.className = "joke-overlay four";
+      break;
+    case "joke-overlay four":
+      jokeBackground.className = "joke-overlay one";
+      break;
+  }
+};
 
 getRandomJoke()
   .then((joke: Joke) => {
@@ -22,6 +42,7 @@ getRandomJoke()
   });
 
 jokeButton.addEventListener("click", () => {
+  nextBlob();
   getRandomJoke()
     .then((joke: Joke) => {
       currentJoke = joke;

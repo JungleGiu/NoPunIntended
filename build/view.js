@@ -1,10 +1,27 @@
 import { getRandomJoke, rateJoke, getWeather } from "./main.js";
 const jokeElement = document.getElementById("joke");
 const jokeButton = document.getElementById("joke-button");
+const jokeBackground = document.querySelector(".joke-overlay");
 const jokeRating = document.querySelectorAll('input[name="score"]');
 let currentJoke = null;
 const weatherElement = document.getElementById("weather");
 let currentWeather = null;
+const nextBlob = () => {
+    switch (jokeBackground.className) {
+        case "joke-overlay one":
+            jokeBackground.className = "joke-overlay two";
+            break;
+        case "joke-overlay two":
+            jokeBackground.className = "joke-overlay three";
+            break;
+        case "joke-overlay three":
+            jokeBackground.className = "joke-overlay four";
+            break;
+        case "joke-overlay four":
+            jokeBackground.className = "joke-overlay one";
+            break;
+    }
+};
 getRandomJoke()
     .then((joke) => {
     currentJoke = joke;
@@ -14,6 +31,7 @@ getRandomJoke()
     console.error("Error fetching joke:", error);
 });
 jokeButton.addEventListener("click", () => {
+    nextBlob();
     getRandomJoke()
         .then((joke) => {
         currentJoke = joke;

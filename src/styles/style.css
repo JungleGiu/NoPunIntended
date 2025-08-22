@@ -18,8 +18,6 @@ body {
   align-items: center;
   justify-content: space-evenly;
   text-align: center;
-  border: solid 2px #9104aa;
-  background-color: #9104aa;
   border-radius: 5rem;
   padding: 20px;
   height: 12rem;
@@ -133,3 +131,64 @@ label:hover {
     font-family: Arial, sans-serif;
   }
 }
+
+.joke-overlay {
+  width: 70vw;
+  height: 45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 1s cubic-bezier(0.5, 0, 0.5, 4);
+}
+@media screen and (max-width: 768px) {
+  .joke-overlay {
+    width: 100vw;
+    height: 35rem;
+  }
+  .joke-container {
+    height: auto;
+    max-width: 90vw;
+  }
+  .weather-container{
+    top: 1rem;
+    left: 0;
+    right: 0;
+    /* transform: translateX(-50%); */
+    width: 80%; 
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  #weather {
+    align-items: center;
+    text-align: center;
+  }
+
+}
+.one {
+
+  background-image: url('../assets/magicpattern-blob-1755872196036.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.two {
+
+  background-image: url('../assets/magicpattern-blob-1755872271591.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.three{
+
+  background-image: url('../assets/magicpattern-blob-1755872328937.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.four{
+  background-image: url('../assets/magicpattern-blob-1755872355211.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
