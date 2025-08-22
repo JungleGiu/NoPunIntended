@@ -9,5 +9,6 @@ export interface Weather {
     description: string;
     temperature: number;
     icon: string;
+    location: string;
 }
 //# sourceMappingURL=types.d.ts.map

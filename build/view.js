@@ -40,7 +40,8 @@ getWeather()
     .then((weather) => {
     currentWeather = weather;
     weatherElement.innerHTML = `<img src="${weather.icon}" alt="${weather.description}">
-    <p>${weather.description} <span>${weather.temperature}°C</span></p> 
+    <p>${weather.location}</p>
+    <p>${weather.description} <span>${weather.temperature}°C</span></p> <br>
     `;
 })
     .catch((error) => {

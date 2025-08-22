@@ -1,15 +1,35 @@
 import type { Joke } from "./types.js";
-import { jokesRecord } from "./types.js";
 import type { Weather } from "./types.js";
-export const getRandomJoke: Function = async (): Promise<Joke> => {
-  const response = await fetch("https://icanhazdadjoke.com/", {
-    headers: {
-      Accept: "application/json",
-    },
-    method: "GET",
-  });
-  const data = await response.json();
-  return data as Joke;
+import { jokesRecord } from "./types.js";
+
+export const getRandomJoke = async (): Promise<Joke> => {
+  let randomizer = Math.random() < 0.5 ? 1 : 2;
+  if (randomizer === 1) 
+    try {
+    const response = await fetch("https://api.chucknorris.io/jokes/random");
+    const data = await response.json();
+    return {
+      id: data.id,
+      joke: data.value,
+    };
+  } catch (error) {
+    console.error("Error fetching joke:", error);
+    throw error;
+  } 
+  else 
+    try{
+    const response = await fetch("https://icanhazdadjoke.com/", {
+      headers: {
+        Accept: "application/json",
+      },
+      method: "GET",
+    });
+    const data = await response.json();
+    return data as Joke;
+  } catch (error) {
+    console.error("Error fetching joke:", error);
+    throw error;
+  }
 };
 
 export const rateJoke = (joke: Joke, score: 1 | 2 | 3) => {
@@ -45,12 +65,13 @@ export const getWeather = async (): Promise<Weather> => {
     const iconUrl = data.current.condition.icon;
     const temperature = Math.round(data.current.temp_c);
     return {
+      location: data.location.name,
       description: data.current.condition.text,
       temperature,
       icon: iconUrl,
-    }
+    };
   } catch (error) {
     console.error("Error fetching weather:", error);
-    throw error;;
+    throw error;
   }
 };

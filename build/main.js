@@ -1,13 +1,34 @@
 import { jokesRecord } from "./types.js";
 export const getRandomJoke = async () => {
-    const response = await fetch("https://icanhazdadjoke.com/", {
-        headers: {
-            Accept: "application/json",
-        },
-        method: "GET",
-    });
-    const data = await response.json();
-    return data;
+    let randomizer = Math.random() < 0.5 ? 1 : 2;
+    if (randomizer === 1)
+        try {
+            const response = await fetch("https://api.chucknorris.io/jokes/random");
+            const data = await response.json();
+            return {
+                id: data.id,
+                joke: data.value,
+            };
+        }
+        catch (error) {
+            console.error("Error fetching joke:", error);
+            throw error;
+        }
+    else
+        try {
+            const response = await fetch("https://icanhazdadjoke.com/", {
+                headers: {
+                    Accept: "application/json",
+                },
+                method: "GET",
+            });
+            const data = await response.json();
+            return data;
+        }
+        catch (error) {
+            console.error("Error fetching joke:", error);
+            throw error;
+        }
 };
 export const rateJoke = (joke, score) => {
     const existingJoke = jokesRecord.find((record) => record.id === joke.id);
@@ -37,6 +58,7 @@ export const getWeather = async () => {
         const iconUrl = data.current.condition.icon;
         const temperature = Math.round(data.current.temp_c);
         return {
+            location: data.location.name,
             description: data.current.condition.text,
             temperature,
             icon: iconUrl,
@@ -45,7 +67,6 @@ export const getWeather = async () => {
     catch (error) {
         console.error("Error fetching weather:", error);
         throw error;
-        ;
     }
 };
 //# sourceMappingURL=main.js.map

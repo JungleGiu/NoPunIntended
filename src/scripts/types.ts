@@ -10,4 +10,5 @@ export interface Weather {
   description: string;
   temperature: number;
   icon: string;
+  location: string;
 }
