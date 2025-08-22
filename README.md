@@ -19,7 +19,7 @@ This repository contains a Typescript client for multiple APIs at the same time,
 ## 🚀 Getting started
 
 ```sh
-git clone https://github.com/JungleGiu/dadJokes.git
+git clone https://github.com/JungleGiu/NoPunIntended.git
 cd typescript-api
 npm install   # or: yarn install, or: pnpm install
 npx tsc -w    # watch mode
@@ -32,18 +32,32 @@ Then use a local server or the Live Server extension to run the code:
 ```
 .
 ├── build
-│   ├── index.js
-│   ├── index.d.ts
-│   ├── index.d.ts.map
-│   └── index.js.map
+│   ├── main.js
+│   ├── main.d.ts
+│   ├── main.d.ts.map
+│   ├── main.js.map
+│   ├── types.js
+│   ├── types.d.ts
+│   ├── types.js.map
+│   ├── types.d.ts.map
+│   ├── view.d.ts
+│   ├── view.js.map
+│   ├── view.d.ts.map
+│   └── view.js
+├── index.html
 ├── tsconfig.json
 ├── package.json
 ├── pnpm-lock.yaml
 ├── .gitignore
 ├── README.md
 ├── src
-│   ├── index.html   
-│   └── index.ts
+│   ├── assets
+│   ├── scripts
+│   │   ├── types.ts
+│   │   ├── main.ts
+│   │   └── view.ts   
+│   └── styles
+│       └── style.css
 └── node_modules
 ```
 
