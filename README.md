@@ -20,7 +20,7 @@ This repository contains a Typescript client for multiple APIs at the same time,
 
 ```sh
 git clone https://github.com/JungleGiu/NoPunIntended.git
-cd typescript-api
+cd NoPunIntended
 npm install   # or: yarn install, or: pnpm install
 npx tsc -w    # watch mode
 ```
