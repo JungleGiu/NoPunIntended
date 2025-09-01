@@ -11,9 +11,10 @@ This repository contains a Typescript client for multiple APIs at the same time,
 - Display a random joke to the user
 - Display a new random joke when the user clicks a button
 - Make the UI more user friendly and appealing
-- Save the jokesStats in local and let the user rate them (optional)
+- Save the jokesStats in local and let the user rate them 
 - Make the rating system editable till the user switches to another joke
 - Show the wheather for the user's location
+- Implement unit tests
 - Make the code more readable and maintainable
 
 ## 🚀 Getting started
@@ -76,3 +77,4 @@ Then use a local server or the Live Server extension to run the code:
 - [X] Make the rating system editable till the user switches to another joke.
 - [X] Show the wheather for the user's location.
 - [X] Make the code more readable and maintainable.
+- [ ] Implement unit tests.

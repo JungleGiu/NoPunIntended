@@ -1,6 +1,6 @@
-import type { Joke } from "./types.js";
-import type { Weather } from "./types.js";
-import { jokesRecord } from "./types.js";
+import type { Joke } from "./types";
+import type { Weather } from "./types";
+import { jokesRecord } from "./types";
 
 export const getRandomJoke = async (): Promise<Joke> => {
   let randomizer = Math.random() < 0.5 ? 1 : 2;
