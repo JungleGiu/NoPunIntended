@@ -40,10 +40,12 @@ export const rateJoke = (joke: Joke, score: 1 | 2 | 3) => {
     existingJoke.score = score;
     existingJoke.date = new Date().toISOString();
     console.log(`Joke ${joke.id} rating has been updated`, existingJoke);
+    return existingJoke;
   } else {
     const newRecord = { ...joke, score, date: new Date().toISOString() };
     jokesRecord.push(newRecord);
     console.log(`Joke ${joke.id} rating has been rated`, newRecord);
+    return newRecord;
   }
 };
 

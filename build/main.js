@@ -1,4 +1,4 @@
-import { jokesRecord } from "./types.js";
+import { jokesRecord } from "./types";
 export const getRandomJoke = async () => {
     let randomizer = Math.random() < 0.5 ? 1 : 2;
     if (randomizer === 1)
@@ -36,11 +36,13 @@ export const rateJoke = (joke, score) => {
         existingJoke.score = score;
         existingJoke.date = new Date().toISOString();
         console.log(`Joke ${joke.id} rating has been updated`, existingJoke);
+        return existingJoke;
     }
     else {
         const newRecord = { ...joke, score, date: new Date().toISOString() };
         jokesRecord.push(newRecord);
         console.log(`Joke ${joke.id} rating has been rated`, newRecord);
+        return newRecord;
     }
 };
 const getLocation = () => {
