@@ -7,7 +7,7 @@ import {
   afterEach,
 } from "@jest/globals";
 import { getRandomJoke, rateJoke, getWeather } from "../scripts/main";
-import type { Joke } from "../scripts/types";
+import  { jokesRecord } from "../scripts/types";
 
 const mockFetch = jest.fn() as jest.MockedFunction<typeof fetch>;
 globalThis.fetch = mockFetch;
@@ -122,6 +122,14 @@ describe("getRandomJoke", () => {
 });
 
 describe("rateJoke", () => {
+    beforeEach(() => {
+    jest.clearAllMocks();
+    jokesRecord.length = 0;
+  });
+  afterEach(() => {
+    jest.restoreAllMocks();
+    jokesRecord.length = 0;
+  });
   it("should rate a new joke", async () => {
      mockFetch.mockResolvedValueOnce({
       ok: true,
@@ -159,4 +167,39 @@ describe("rateJoke", () => {
     expect(updatedJoke.score).toBeTruthy();
     expect(updatedJoke.date).toBeTruthy();
   })
-});
+  it("should console log the rating and the updated joke", async () => {
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        id: "test-id-dadjoke",
+        joke: "Test joke Dad Joke",
+        }),
+      } as Response);
+      
+      const consoleLogSpy = jest.spyOn(console, "log");
+      const joke = await getRandomJoke();
+      const ratedJoke = rateJoke(joke, 1);
+      
+      expect(consoleLogSpy).toHaveBeenCalledWith(
+        `Joke ${ratedJoke.id} rating has been rated`,
+      expect.objectContaining({
+    id: ratedJoke.id,
+    joke: ratedJoke.joke,
+    score: 1
+  })
+      );
+      
+      const secondRating = rateJoke(ratedJoke, 2);
+      expect(consoleLogSpy).toHaveBeenCalledWith(
+        `Joke ${secondRating.id} rating has been updated`,
+        expect.objectContaining({
+          id: secondRating.id,
+          joke: secondRating.joke,
+          score: 2
+        })
+      );
+      
+      expect(consoleLogSpy).toHaveBeenCalledTimes(2);
+      consoleLogSpy.mockRestore();
+    });
+  });
