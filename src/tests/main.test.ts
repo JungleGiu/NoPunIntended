@@ -6,7 +6,8 @@ import {
   beforeEach,
   afterEach,
 } from "@jest/globals";
-import { getRandomJoke, rateJoke, getWeather } from "../scripts/main";
+import { getRandomJoke, rateJoke} from "../scripts/main";
+import * as mainModule from "../scripts/main";
 import  { jokesRecord } from "../scripts/types";
 
 const mockFetch = jest.fn() as jest.MockedFunction<typeof fetch>;
@@ -203,3 +204,128 @@ describe("rateJoke", () => {
       consoleLogSpy.mockRestore();
     });
   });
+
+describe("getWeather", () => {
+  beforeEach(() => {
+    mockFetch.mockClear();
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it("should fetch weather using a mocked position", async () => {
+  
+    const mockPosition= {
+      coords: {
+        latitude: 51.1,
+        longitude: 45.3,
+        accuracy: 1,
+        altitude: null,
+        altitudeAccuracy: null,
+        heading: null,
+        speed: null,
+      },
+      timestamp: Date.now(),
+    } as GeolocationPosition;
+
+    const spyGetLocation = jest.spyOn(mainModule, "getLocation")
+      .mockResolvedValue(mockPosition);
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        location: { name: "Test City" },
+        current: {
+          condition: { 
+            text: "Partly cloudy", 
+            icon: "//cdn.weatherapi.com/weather/64x64/day/116.png" 
+          },
+          temp_c: 25.5,
+        },
+      }),
+    } as Response);
+    const weather = await mainModule.getWeather();
+    expect(spyGetLocation).toHaveBeenCalledTimes(1);
+    expect(mockFetch).toHaveBeenCalledWith(
+      "http://api.weatherapi.com/v1/current.json?key=92c6516e4dec42ab8a7110724252208&q=51.1,45.3"
+    );
+
+    // Verifica il risultato finale
+    expect(weather).toEqual({
+      location: "Test City",
+      description: "Partly cloudy",
+      temperature: 26, // Math.round(25.5) = 26
+      icon: "//cdn.weatherapi.com/weather/64x64/day/116.png",
+    });
+  });
+
+  it("should handle geolocation errors", async () => {
+    const geoError = new Error("Geolocation permission denied");
+    const spyGetLocation = jest.spyOn(mainModule, "getLocation")
+      .mockRejectedValue(geoError);
+
+    const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    await expect(mainModule.getWeather()).rejects.toThrow("Geolocation permission denied");
+    expect(consoleSpy).toHaveBeenCalledWith("Error fetching weather:", geoError);
+
+    consoleSpy.mockRestore();
+  });
+   it("should round temperature correctly", async () => {
+    const mockPosition= {
+      coords: { latitude: 1, longitude: 1, accuracy: 1, altitude: null, altitudeAccuracy: null, heading: null, speed: null },
+      timestamp: Date.now(),
+    } as GeolocationPosition;
+    
+    jest.spyOn(mainModule, "getLocation").mockResolvedValue(mockPosition);
+    const testCases = [
+      { temp_c: 25.4, expected: 25 },
+      { temp_c: 25.6, expected: 26 },
+      { temp_c: -10.3, expected: -10 },
+      { temp_c: 0.5, expected: 1 },
+    ];
+
+    for (const testCase of testCases) {
+      mockFetch.mockResolvedValueOnce({
+        ok: true,
+        json: async () => ({
+          location: { name: "Test" },
+          current: {
+            condition: { text: "Clear", icon: "test.png" },
+            temp_c: testCase.temp_c,
+          },
+        }),
+      } as Response);
+
+      const weather = await mainModule.getWeather();
+      expect(weather.temperature).toBe(testCase.expected);
+      mockFetch.mockClear(); 
+    }
+  });
+  it("should return a Weather object parsing the response", async () => {
+    const mockPosition= {
+      coords: { latitude: 1, longitude: 1, accuracy: 1, altitude: null, altitudeAccuracy: null, heading: null, speed: null },
+      timestamp: Date.now(),
+    } as GeolocationPosition;
+    
+    jest.spyOn(mainModule, "getLocation").mockResolvedValue(mockPosition);
+    mockFetch.mockResolvedValueOnce({
+      ok: true,
+      json: async () => ({
+        location: { name: "Test" },
+        current: {
+          condition: { text: "Clear", icon: "test.png" },
+          temp_c: 25.5,
+        },
+      }),
+    } as Response);
+
+    const weather = await mainModule.getWeather();
+    expect(weather).toEqual({
+      location: "Test",
+      description: "Clear",
+      temperature: 26, // Math.round(25.5) = 26
+      icon: "test.png",
+    });
+  });
+});
