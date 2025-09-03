@@ -25,9 +25,13 @@ cd NoPunIntended
 npm install   # or: yarn install, or: pnpm install
 npx tsc -w    # watch mode
 ```
-
 Then use a local server or the Live Server extension to run the code:  
 [Live Server Extension](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)
+
+if you want to run the tests
+```sh
+npx jest
+```
 
 ## 📁 Folder structure
 ```
@@ -47,12 +51,18 @@ Then use a local server or the Live Server extension to run the code:
 │   └── view.js
 ├── index.html
 ├── tsconfig.json
+├── tsconfig.test.json
+├── jest.config.js
+├── babel.config.js
 ├── package.json
 ├── pnpm-lock.yaml
 ├── .gitignore
 ├── README.md
 ├── src
 │   ├── assets
+│   │   └── ...
+│   ├── tests
+│   │   └── main.test.ts
 │   ├── scripts
 │   │   ├── types.ts
 │   │   ├── main.ts
@@ -68,6 +78,7 @@ Then use a local server or the Live Server extension to run the code:
 - pnpm
 - HTML
 - CSS
+- Jest
 
 ## ☑️ To Do
 - [X] Display a random joke to the user.
@@ -77,4 +88,4 @@ Then use a local server or the Live Server extension to run the code:
 - [X] Make the rating system editable till the user switches to another joke.
 - [X] Show the wheather for the user's location.
 - [X] Make the code more readable and maintainable.
-- [ ] Implement unit tests.
+- [X] Implement unit tests.
