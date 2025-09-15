@@ -32,6 +32,7 @@ body {
   font-weight: bold;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   font-family: Arial, sans-serif;
+
 }
 
 #joke-button {
@@ -134,11 +135,11 @@ label:hover {
 
 .joke-overlay {
   width: 70vw;
-  height: 45rem;
+  height: 50rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: all 1s cubic-bezier(0.5, 0, 0.5, 4);
+  transition: all 1s cubic-bezier(0.5, 0, 0.5, 1);
 }
 @media screen and (max-width: 768px) {
   .joke-overlay {

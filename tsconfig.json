@@ -2,19 +2,19 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    "rootDir": "./src/scripts", 
+    "rootDir": ".", 
     "outDir": "./build",
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
     "module": "ESNext",
     "target": "esnext",
-    "types": [],
+    // "types": [],
     // For nodejs:
     // "lib": ["esnext"],
-    // "types": ["node"],
+    "types": ["node"],
     // and npm install -D @types/node
-
+    "moduleResolution": "node",
     // Other Outputs
     "sourceMap": true,
     "declaration": true,
@@ -41,9 +41,10 @@
     "moduleDetection": "force",
     "skipLibCheck": true,
   },
-   "include": ["src/scripts/**/*"],
+   "include": ["src/scripts/**/*", "envVariables.ts"],
   "exclude": [
-    "node_modules", 
+    "node_modules",
+    "build", 
     "src/tests/**/*",    
     "**/*.test.ts",       
     "**/*.spec.ts"       

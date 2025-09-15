@@ -66,7 +66,8 @@ npx jest
 │   ├── scripts
 │   │   ├── types.ts
 │   │   ├── main.ts
-│   │   └── view.ts   
+│   │   └── view.ts  
+│   ├── setupTests.ts 
 │   └── styles
 │       └── style.css
 └── node_modules

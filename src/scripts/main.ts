@@ -1,12 +1,23 @@
-import type { Joke } from "./types";
-import type { Weather } from "./types";
-import { jokesRecord } from "./types";
+import {CHUCK_NORRIS_API, DADS_JOKE_API, WEATHER_API, WEATHER_API_KEY} from '../../envVariables.js'; 
 
+import type { Joke } from "./types.js";
+import type { Weather } from "./types.js";
+import { jokesRecord } from "./types.js";
+
+const chuckURL = CHUCK_NORRIS_API;
+const dadsURL = DADS_JOKE_API;
+const weatherURL = WEATHER_API;
+const weatherKey = WEATHER_API_KEY;
 export const getRandomJoke = async (): Promise<Joke> => {
   let randomizer = Math.random() < 0.5 ? 1 : 2;
   if (randomizer === 1) 
     try {
-    const response = await fetch("https://api.chucknorris.io/jokes/random");
+    const response = await fetch(`${chuckURL}`, {
+      headers: {
+        Accept: "application/json",
+      },
+      method: "GET",
+    });
     const data = await response.json();
     return {
       id: data.id,
@@ -18,7 +29,7 @@ export const getRandomJoke = async (): Promise<Joke> => {
   } 
   else 
     try{
-    const response = await fetch("https://icanhazdadjoke.com/", {
+    const response = await fetch(`${dadsURL}`, {
       headers: {
         Accept: "application/json",
       },
@@ -57,11 +68,10 @@ export const getLocation = (): Promise<GeolocationPosition> => {
 
 export const getWeather = async (): Promise<Weather> => {
   try {
-    const API_KEY = "92c6516e4dec42ab8a7110724252208";
-    const mainUrl = "http://api.weatherapi.com/v1/current.json";
+  
     const location = await getLocation();
     const response = await fetch(
-      `${mainUrl}?key=${API_KEY}&q=${location.coords.latitude},${location.coords.longitude}`
+      `${weatherURL}?key=${weatherKey}&q=${location.coords.latitude},${location.coords.longitude}`
     );
     const data = await response.json();
     const iconUrl = data.current.condition.icon;
