@@ -5,6 +5,7 @@ export interface Joke {
     date?: string;
 }
 export declare const jokesRecord: Joke[];
+export declare const jokesReport: Joke[];
 export interface Weather {
     description: string;
     temperature: number;

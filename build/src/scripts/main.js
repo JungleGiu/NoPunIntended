@@ -1,5 +1,5 @@
 import { CHUCK_NORRIS_API, DADS_JOKE_API, WEATHER_API, WEATHER_API_KEY } from '../../envVariables.js';
-import { jokesRecord } from "./types.js";
+import { jokesRecord, jokesReport } from "./types.js";
 const chuckURL = CHUCK_NORRIS_API;
 const dadsURL = DADS_JOKE_API;
 const weatherURL = WEATHER_API;
@@ -15,6 +15,8 @@ export const getRandomJoke = async () => {
                 method: "GET",
             });
             const data = await response.json();
+            jokesReport.push(data);
+            console.log(jokesReport);
             return {
                 id: data.id,
                 joke: data.value,
@@ -33,6 +35,8 @@ export const getRandomJoke = async () => {
                 method: "GET",
             });
             const data = await response.json();
+            jokesReport.push(data);
+            console.log(jokesReport);
             return data;
         }
         catch (error) {
