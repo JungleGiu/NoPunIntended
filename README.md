@@ -30,7 +30,7 @@ Then use a local server or the Live Server extension to run the code:
 
 if you want to run the tests
 ```sh
-npx jest
+npm test
 ```
 
 ## 📁 Folder structure
