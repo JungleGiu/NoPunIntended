@@ -1,4 +1,4 @@
-import { getRandomJoke, rateJoke, getWeather } from "./main.js";
+import  { getRandomJoke, rateJoke, getWeather } from "./main.js";
 import type { Joke } from "./types.js";
 import type { Weather } from "./types.js";
 

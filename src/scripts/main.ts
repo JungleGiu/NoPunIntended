@@ -1,23 +1,18 @@
-import {CHUCK_NORRIS_API, DADS_JOKE_API, WEATHER_API, WEATHER_API_KEY} from '../../envVariables.js'; 
+import {config} from "../setupEnv.js";
 
 import type { Joke } from "./types.js";
 import type { Weather } from "./types.js";
 import { jokesRecord , jokesReport } from "./types.js";
 
-const chuckURL = CHUCK_NORRIS_API;
-const dadsURL = DADS_JOKE_API;
-const weatherURL = WEATHER_API;
-const weatherKey = WEATHER_API_KEY;
+const chuckURL = config.CHUCK_NORRIS_API;
+const dadsURL = config.DADS_JOKE_API;
+const weatherURL = config.WEATHER_API;
+const weatherKey = config.WEATHER_API_KEY;
 export const getRandomJoke = async (): Promise<Joke> => {
   let randomizer = Math.random() < 0.5 ? 1 : 2;
   if (randomizer === 1) 
     try {
-    const response = await fetch(`${chuckURL}`, {
-      headers: {
-        Accept: "application/json",
-      },
-      method: "GET",
-    });
+    const response = await fetch(`${chuckURL}`);
     const data = await response.json();
     jokesReport.push(data);   
     console.log(jokesReport);

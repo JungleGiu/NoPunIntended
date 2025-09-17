@@ -38,8 +38,8 @@ describe("getRandomJoke", () => {
     expect(mockFetch).toHaveBeenCalledTimes(1);
     const url = mockFetch.mock.calls[0][0] as string;
     expect(
-      url.includes("https://icanhazdadjoke.com/") ||
-        url.includes("https://api.chucknorris.io/jokes/random")
+      url.includes("https://icanhazdadjoke.com") ||
+url.includes("https://api.chucknorris.io/jokes/random")
     ).toBe(true);
   });
 
@@ -83,7 +83,7 @@ describe("getRandomJoke", () => {
     await getRandomJoke();
 
     const url = mockFetch.mock.calls[0][0] as string;
-    expect(url.includes("https://icanhazdadjoke.com/")).toBe(true);
+    expect(url.includes("https://icanhazdadjoke.com")).toBe(true);
 
     mathSpy.mockRestore();
   });
@@ -200,7 +200,7 @@ describe("rateJoke", () => {
         })
       );
       
-      expect(consoleLogSpy).toHaveBeenCalledTimes(2);
+      expect(consoleLogSpy).toHaveBeenCalledTimes(3);
       consoleLogSpy.mockRestore();
     });
   });

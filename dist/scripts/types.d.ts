@@ -12,4 +12,3 @@ export interface Weather {
     icon: string;
     location: string;
 }
-//# sourceMappingURL=types.d.ts.map

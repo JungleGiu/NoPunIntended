@@ -1,51 +1,33 @@
 {
-  // Visit https://aka.ms/tsconfig to read more about this file
+
   "compilerOptions": {
-    // File Layout
-    "rootDir": ".", 
-    "outDir": "./build",
+    "rootDir": "./src",
+    "outDir": "./dist",
 
-    // Environment Settings
-    // See also https://aka.ms/tsconfig/module
-    "module": "ESNext",
-    "target": "esnext",
-    // "types": [],
-    // For nodejs:
-    // "lib": ["esnext"],
-    "types": ["node"],
-    // and npm install -D @types/node
-    "moduleResolution": "node",
-    // Other Outputs
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-
-    // Stricter Typechecking Options
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-
-    // Style Options
-    // "noImplicitReturns": true,
-    // "noImplicitOverride": true,
-    // "noUnusedLocals": true,
-    // "noUnusedParameters": true,
-    // "noFallthroughCasesInSwitch": true,
-    // "noPropertyAccessFromIndexSignature": true,
-
-    // Recommended Options
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "esModuleInterop": true,
     "skipLibCheck": true,
+    "target": "es2022",
+    "allowJs": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    "module" : "preserve",
+    "verbatimModuleSyntax": true,
+   "allowSyntheticDefaultImports": true,
+    "declaration": true,
+     "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    //  "module": "NodeNext",
+    "sourceMap": true,
+
+    "lib": ["es2022", "dom", "dom.iterable"],
   },
-   "include": ["src/scripts/**/*", "envVariables.ts"],
+   "include": ["src/**/*"],
   "exclude": [
     "node_modules",
-    "build", 
-    "src/tests/**/*",    
+    "dist",    
     "**/*.test.ts",       
     "**/*.spec.ts"       
   ]
