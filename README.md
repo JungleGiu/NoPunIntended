@@ -36,19 +36,30 @@ npm test
 ## 📁 Folder structure
 ```
 .
-├── build
-│   ├── main.js
-│   ├── main.d.ts
-│   ├── main.d.ts.map
-│   ├── main.js.map
-│   ├── types.js
-│   ├── types.d.ts
-│   ├── types.js.map
-│   ├── types.d.ts.map
-│   ├── view.d.ts
-│   ├── view.js.map
-│   ├── view.d.ts.map
-│   └── view.js
+├── dist
+│   ├── setupTests.js
+│   ├── setupTests.d.ts
+│   ├── setupTests.js.map
+│   ├── setupEnv.js
+│   ├── setupEnv.d.ts
+│   ├── setupEnv.js.map
+│   ├── tests
+│   │   ├── main.test.js
+│   │   ├── main.test.js.map
+│   │   └── main.test.d.ts
+│   └──── scripts
+│       ├── main.js
+│       ├── main.d.ts
+│       ├── main.d.ts.map
+│       ├── main.js.map
+│       ├── types.js
+│       ├── types.d.ts
+│       ├── types.js.map
+│       ├── types.d.ts.map
+│       ├── view.d.ts
+│       ├── view.js.map
+│       ├── view.d.ts.map
+│       └── view.js
 ├── index.html
 ├── tsconfig.json
 ├── tsconfig.test.json
@@ -80,6 +91,7 @@ npm test
 - HTML
 - CSS
 - Jest
+- Babel
 
 ## ☑️ To Do
 - [X] Display a random joke to the user.
